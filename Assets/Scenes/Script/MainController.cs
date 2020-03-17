@@ -45,22 +45,22 @@ public class MainController : MonoBehaviour
             else                                                            //создаем обект 
             {
                 Vector2 position = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-                GameObject test;
+                GameObject buf;
                 GameObject randPrefab = RandFigure();
-                test = Instantiate(randPrefab, position, Quaternion.identity);
-                if(test.GetComponent<GeometryObjectModel>())
+                buf = Instantiate(randPrefab, position, Quaternion.identity);
+                if(buf.GetComponent<GeometryObjectModel>())
                 {
-                    test.GetComponent<GeometryObjectModel>().objectType = randPrefab.name;
-                    test.GetComponent<GeometryObjectModel>().GeometryObjectData = geometryObjectData;
+                    buf.GetComponent<GeometryObjectModel>().objectType = randPrefab.name;
+                    buf.GetComponent<GeometryObjectModel>().GeometryObjectData = geometryObjectData;
                 }
                 else
                 {
-                    Destroy(test);
+                    Destroy(buf);
                     Debug.Log("Нету скрипта GeometryObjectModel у " + randPrefab.name.ToString());
                     return;
                 }
 
-                test.transform.SetParent(this.transform); 
+                buf.transform.SetParent(this.transform); 
             }
         }
     }
